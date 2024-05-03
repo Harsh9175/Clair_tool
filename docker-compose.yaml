@@ -1,0 +1,15 @@
+version: '3'
+services:
+  postgres:
+    image: arminc/clair-db
+    container_name: clairdb
+    restart: always
+
+  clair:
+    image: arminc/clair-local-scan
+    container_name: clairlocal
+    depends_on:
+      - postgres
+    ports:
+      - "6060:6060"
+    restart: always
